@@ -6,7 +6,6 @@ import httpStatus from 'http-status';
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await StudentServices.getAllStudentsFromDB();
-
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -21,7 +20,6 @@ const getAllStudents = async (req: Request, res: Response, next: NextFunction) =
 const getSingleStudent = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { studentId } = req.params;
-
     const result = await StudentServices.getSingleStudentFromDB(studentId);
 
     sendResponse(res, {
@@ -39,7 +37,6 @@ const deleteStudent = async (req: Request, res: Response, next: NextFunction) =>
   try {
     const { studentId } = req.params;
     const result = await StudentServices.deleteStudentFromDB(studentId);
-
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
