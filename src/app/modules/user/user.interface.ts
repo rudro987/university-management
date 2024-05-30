@@ -3,6 +3,6 @@ export type TUser = {
     password: string;
     needsPasswordChange: boolean;
     role: 'admin' | 'student' | 'faculty';
-    status: 'in-progres' | 'blocked';
+    status: 'in-progress' | 'blocked';
     isDeleted: boolean;
 }
