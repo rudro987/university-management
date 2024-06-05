@@ -9,4 +9,17 @@ router.post('/create-academic-semester',
 validatorMiddleWare(AcademicSemesterValidation.createAcademicSemesterValidationSchema),
 AcademicSemesterControllers.createAcademicSemester);
 
+router.get(
+    '/:semesterId',
+    AcademicSemesterControllers.getSingleAcademicSemester,
+  );
+  
+  router.patch(
+    '/:semesterId',
+    validatorMiddleWare(AcademicSemesterValidation.updateAcademicSemesterValidationSchema),
+    AcademicSemesterControllers.updateAcademicSemester,
+  );
+  
+  router.get('/', AcademicSemesterControllers.getAllAcademicSemesters);
+
 export const AcademicSemesterRoutes = router;
