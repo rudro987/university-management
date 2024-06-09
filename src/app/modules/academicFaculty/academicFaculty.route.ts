@@ -12,7 +12,7 @@ AcademicFacultyControllers.createAcademicFaculty);
 
 router.get(
     '/:facultyId',
-    AcademicFacultyControllers.getAllAcademicFaculties,
+    AcademicFacultyControllers.getSingleAcademicFaculty,
   );
   
   router.patch(
