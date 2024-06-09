@@ -14,12 +14,12 @@ router.post(
 );
 
 router.get(
-  '/:facultyId',
+  '/:departmentId',
   AcademicSemesterControllers.getSingleAcademicSemester,
 );
 
 router.patch(
-  '/:facultyId',
+  '/:departmentId',
   validatorMiddleWare(
     AcademicSemesterValidation.updateAcademicSemesterValidationSchema,
   ),
