@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/api/v1', router);
 
 const test = (req: Request, res: Response) => {
-  const a = 10;
+  const a = 'Hello from PH University server';
   res.send(a);
 };
 
