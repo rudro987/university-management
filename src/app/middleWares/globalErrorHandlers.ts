@@ -3,6 +3,7 @@ import { ZodError, ZodIssue } from "zod";
 import { TErrorSources } from "../interface/error";
 import config from "../config";
 import handleValidationError from "../errors/handleValidationError";
+import handleZodError from "../errors/handleZodError";
 
 const globalErrorHandler : ErrorRequestHandler = (err, req, res, next) => {
   
@@ -16,22 +17,6 @@ const globalErrorHandler : ErrorRequestHandler = (err, req, res, next) => {
         message: 'Something went wrong'
       }
     ];
-
-    const handleZodError = (err: ZodError) => {
-      const errorSources: TErrorSources = err.issues.map((issue: ZodIssue) => {
-        return {
-          path: issue?.path[issue.path.length-1],
-          message: issue?.message
-        }
-      })
-      const statusCode = 400;
-
-      return {
-        statusCode,
-        message: 'Validation Error',
-        errorSources,
-      }
-    }
 
     if( err instanceof ZodError){
       const simplifiedError = handleZodError(err);
