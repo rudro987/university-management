@@ -1,5 +1,5 @@
 import express from 'express';
-import validatorMiddleWare from '../../middleWares/validateRequest';
+import validateRequest from '../../middlewares/validateRequest';
 import { AcademicFacultyControllers } from './academicFaculty.controller';
 import { AcademicFacultyValidation } from './academicFaculty.validation';
 
@@ -7,20 +7,17 @@ const router = express.Router();
 
 router.post(
   '/create-academic-faculty',
-  validatorMiddleWare(
+  validateRequest(
     AcademicFacultyValidation.createAcademicFacultyValidationSchema,
   ),
   AcademicFacultyControllers.createAcademicFaculty,
 );
 
-router.get(
-  '/:departmentId',
-  AcademicFacultyControllers.getSingleAcademicFaculty,
-);
+router.get('/:id', AcademicFacultyControllers.getSingleAcademicFaculty);
 
 router.patch(
-  '/:departmentId',
-  validatorMiddleWare(
+  '/:id',
+  validateRequest(
     AcademicFacultyValidation.updateAcademicFacultyValidationSchema,
   ),
   AcademicFacultyControllers.updateAcademicFaculty,

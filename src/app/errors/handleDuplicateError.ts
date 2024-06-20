@@ -1,22 +1,27 @@
-import mongoose from "mongoose";
-import { TErrorSources, TGenericErrorResponse } from "../interface/error";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TErrorSources, TGenericErrorResponse } from '../interface/error';
 
 const handleDuplicateError = (err: any): TGenericErrorResponse => {
-    const match = err.message.match(/"([^"]*)"/);
-    const extractedMessage = match && match[1];
+  // Extract value within double quotes using regex
+  const match = err.message.match(/"([^"]*)"/);
 
-    const errorSources: TErrorSources = [{
-        path: '',
-        message: `${extractedMessage} already exists!`
-    }]
+  // The extracted value will be in the first capturing group
+  const extractedMessage = match && match[1];
 
-    const statusCode = 400;
+  const errorSources: TErrorSources = [
+    {
+      path: '',
+      message: `${extractedMessage} is already exists`,
+    },
+  ];
 
-      return {
-        statusCode,
-        message: 'Duplicated ID or name',
-        errorSources,
-      }
-}
+  const statusCode = 400;
+
+  return {
+    statusCode,
+    message: 'Invalid ID',
+    errorSources,
+  };
+};
 
 export default handleDuplicateError;

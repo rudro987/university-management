@@ -1,16 +1,19 @@
-import sendResponse from "../../utils/sendResponse";
-import httpStatus from "http-status";
+import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
-import { AcademicSemesterServices } from "./academicSemester.service";
+import sendResponse from '../../utils/sendResponse';
+import { AcademicSemesterServices } from './academicSemester.service';
 
 const createAcademicSemester = catchAsync(async (req, res) => {
-  const result = await AcademicSemesterServices.createAcademicSemesterIntoDB(req.body);
+  const result = await AcademicSemesterServices.createAcademicSemesterIntoDB(
+    req.body,
+  );
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic Semester is created succesfully',
+    message: 'Academic semester is created succesfully',
     data: result,
-  })
+  });
 });
 
 const getAllAcademicSemesters = catchAsync(async (req, res) => {
@@ -52,10 +55,9 @@ const updateAcademicSemester = catchAsync(async (req, res) => {
   });
 });
 
-
-  export const AcademicSemesterControllers = {
-    createAcademicSemester,
-    getAllAcademicSemesters,
-    getSingleAcademicSemester,
-    updateAcademicSemester,
-  }
+export const AcademicSemesterControllers = {
+  createAcademicSemester,
+  getAllAcademicSemesters,
+  getSingleAcademicSemester,
+  updateAcademicSemester,
+};
